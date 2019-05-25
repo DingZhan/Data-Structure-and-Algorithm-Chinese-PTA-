@@ -25,13 +25,9 @@ int main()
         //对称矩阵
         mat[b][a] = len;
     }
-    //每一轮刷新后，都要检测是否有距离被更新过，如果没有结点间的距离被更新过，
-    //则说明不要再刷新矩阵
-    bool bUpdated;
-    while(true)
+    //Floyd算法，k一定要放在最外层
+    for(k=1; k<=N; ++k)
     {
-        //设置当前没有矩阵元素被更新过
-        bUpdated = false;
         //矩阵行号
         for(i=1; i<=N; ++i)
         {
@@ -40,24 +36,18 @@ int main()
             {
                 if(j==i)
                     continue;
-                for(k=1; k<=N; ++k)
+                //如果mat[i][j]>mat[i][k]+mat[k][j],则更新mat[i][j]距离
+                if(mat[i][j]>mat[i][k]+mat[k][j])
                 {
-                    //如果mat[i][j]>mat[i][k]+mat[k][j],则更新mat[i][j]距离
-                    if(mat[i][j]>mat[i][k]+mat[k][j])
-                    {
-                        mat[i][j]=mat[i][k]+mat[k][j];
-                        //设置矩阵元素被更新过标志
-                        bUpdated = true;
-                        //同时更新对称元素，if是否不需要加？
-                        if(mat[j][i]>mat[i][j])
-                            mat[j][i] = mat[i][j];
-                    }
+                    mat[i][j]=mat[i][k]+mat[k][j];
+                    /*
+                    //同时更新对称元素，if是否不需要加？
+                    if(mat[j][i]>mat[i][j])
+                        mat[j][i] = mat[i][j];
+                    */
                 }
             }
         }
-        //如果扫描一轮后，没有矩阵元素被更新过，则退出更新循环
-        if(!bUpdated)
-            break;
     }
 
     int minmaxID=-1;
