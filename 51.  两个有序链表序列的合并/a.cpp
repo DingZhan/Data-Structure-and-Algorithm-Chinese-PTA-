@@ -23,21 +23,44 @@ int main()
     bool bEmpty=true;
     for(it1=S1.begin(), it2=S2.begin(); it1!=S1.end()&&it2!=S2.end(); )
     {
+        if(!bEmpty)
+            cout<<" ";
         if(*it1<*it2)
+        {
+            cout<<*it1;
             ++it1;
+        }
         else if(*it1>*it2)
+        {
+            cout<<*it2;
             ++it2;
+        }
         else
         {
-            if(!bEmpty)
-                cout<<" ";
-			//总感觉有bug，因为如果两个链表里都有完全重复的两个结点 S1(a->a) S2(a->a)，那么到底要输出几个a?
             cout<<*it1;
-            bEmpty = false;
+            cout<<" "<<*it2;
             ++it1;
             ++it2;
         }
+        bEmpty = false;
     }
+    while(it1!=S1.end())
+    {
+        if(!bEmpty)
+            cout<<" ";
+        cout<<*it1;
+        ++it1;
+        bEmpty = false;
+    }
+    while(it2!=S2.end())
+    {
+        if(!bEmpty)
+            cout<<" ";
+        cout<<*it2;
+        ++it2;
+        bEmpty = false;
+    }
+
     if(bEmpty)
         cout<<"NULL";
     cout<<"\n";
