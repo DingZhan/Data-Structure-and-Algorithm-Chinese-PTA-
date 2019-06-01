@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -24,6 +25,7 @@ void BuildTree(char preStr[], char inStr[], int n, Node **root)
     *root = (Node*)malloc(sizeof(Node));
     (*root)->v = preStr[0];
     (*root)->left = (*root)->right = NULL;
+    //分解左右子树的时候，需要确认划分好左右子树
     //递归创建左子树
     BuildTree(preStr+1, inStr, pos, &((*root)->left));
     //递归创建右子树
