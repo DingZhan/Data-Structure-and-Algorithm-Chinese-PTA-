@@ -28,6 +28,7 @@ public:
     //往二叉搜索树添加结点
     void AddNode(int value)
     {
+		//调用另一个私有的递归添加结点函数
         AddNode(m_Root, value);
     }
     //前序遍历返回的字符串
